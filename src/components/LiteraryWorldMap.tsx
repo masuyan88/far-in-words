@@ -170,11 +170,11 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
               }}
               aria-label={place.displayName}
             >
-              {/* 选中双环 — 克制止 */}
+              {/* 选中：轻柔脉冲 + 静态内环 */}
               {sel && (
                 <>
-                  <span className="absolute w-[28px] h-[28px] rounded-full border-[1px] border-[#7a1f00]/30 pointer-events-none" />
-                  <span className="absolute w-[20px] h-[20px] rounded-full border-[1.5px] border-[#7a1f00]/50 pointer-events-none" />
+                  <span className="pulse-ring absolute w-[14px] h-[14px] pointer-events-none" />
+                  <span className="absolute w-[18px] h-[18px] rounded-full border-[1.5px] border-[#7a1f00]/45 pointer-events-none" />
                 </>
               )}
 
