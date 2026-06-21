@@ -139,17 +139,18 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
           const lblCfg = LABEL_DIR[place.id] || { dir: "bottom" as const };
           const off = lblCfg.offset || { x: 0, y: 0 };
 
-          // 标签位置计算
+          // 标签位置计算 — 选中时额外偏移避免圆环遮挡
+          const selOff = sel ? 4 : 0;
           const lblPos: React.CSSProperties = (() => {
             switch (lblCfg.dir) {
               case "top":
-                return { bottom: "100%", left: "50%", transform: `translateX(calc(-50% + ${off.x}px))`, marginBottom: 5 };
+                return { bottom: "100%", left: "50%", transform: `translateX(calc(-50% + ${off.x}px))`, marginBottom: 5 + selOff };
               case "bottom":
-                return { top: "100%", left: "50%", transform: `translateX(calc(-50% + ${off.x}px))`, marginTop: 5 };
+                return { top: "100%", left: "50%", transform: `translateX(calc(-50% + ${off.x}px))`, marginTop: 5 + selOff };
               case "left":
-                return { right: "100%", top: "50%", transform: `translateY(calc(-50% + ${off.y}px))`, marginRight: 6 };
+                return { right: "100%", top: "50%", transform: `translateY(calc(-50% + ${off.y}px))`, marginRight: 6 + selOff };
               case "right":
-                return { left: "100%", top: "50%", transform: `translateY(calc(-50% + ${off.y}px))`, marginLeft: 6 };
+                return { left: "100%", top: "50%", transform: `translateY(calc(-50% + ${off.y}px))`, marginLeft: 6 + selOff };
               default:
                 return {};
             }
@@ -169,8 +170,13 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
               }}
               aria-label={place.displayName}
             >
-              {/* 选中光圈 — 克制 */}
-              {sel && <span className="pulse-ring absolute w-[18px] h-[18px] rounded-full border-[1.5px] border-[#7a1f00] pointer-events-none" />}
+              {/* 选中双环 — 克制止 */}
+              {sel && (
+                <>
+                  <span className="absolute w-[28px] h-[28px] rounded-full border-[1px] border-[#7a1f00]/30 pointer-events-none" />
+                  <span className="absolute w-[20px] h-[20px] rounded-full border-[1.5px] border-[#7a1f00]/50 pointer-events-none" />
+                </>
+              )}
 
               {/* 点位 */}
               <span
@@ -180,9 +186,7 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
                   height: sel ? 12 : 8,
                   background: sel ? "#7a1f00" : "#3d5a1e",
                   border: sel ? "2px solid #7a1f00" : "1.5px solid #5a8030",
-                  boxShadow: sel
-                    ? "0 0 6px rgba(122,31,0,0.35)"
-                    : "0 0 3px rgba(61,90,30,0.2)",
+                  boxShadow: sel ? "0 0 6px rgba(122,31,0,0.3)" : "0 0 2px rgba(61,90,30,0.15)",
                 }}
               />
 
