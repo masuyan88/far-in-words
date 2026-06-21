@@ -24,7 +24,7 @@ export default function RandomSceneModal({
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center safe-bottom modal-backdrop" onClick={onClose}>
       <div
-        className="relative w-full max-w-md h-[85svh] sm:h-[85vh] flex flex-col modal-container"
+        className="relative w-full max-w-md max-h-[90svh] sm:max-h-[90vh] flex flex-col modal-container"
         onClick={(e) => e.stopPropagation()}
       >
         {/* 关闭按钮 */}
@@ -50,7 +50,7 @@ export default function RandomSceneModal({
         </div>
 
         {/* 正文 — 可滚动 */}
-        <div className="flex-1 min-h-0 overflow-y-auto p-5 md:p-7 text-center scrollbar-vintage">
+        <div className="overflow-y-auto p-5 md:p-7 text-center scrollbar-vintage">
           <div className="inline-block mb-3 px-4 py-1.5 border-[1.5px] border-[#7a1f00]/40 rounded-full -rotate-2 opacity-80">
             <span className="text-[11px] text-[#7a1f00] tracking-[0.15em] font-semibold">POSTCARD FROM AFAR</span>
           </div>

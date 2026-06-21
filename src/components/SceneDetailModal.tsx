@@ -18,7 +18,7 @@ export default function SceneDetailModal({
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center safe-bottom modal-backdrop" onClick={onClose}>
       <div
-        className="relative w-full max-w-lg h-[85svh] sm:h-[85vh] flex flex-col modal-container"
+        className="relative w-full max-w-lg max-h-[90svh] sm:max-h-[90vh] flex flex-col modal-container"
         onClick={(e) => e.stopPropagation()}
       >
         {/* 关闭按钮 — 固定在图片右上 */}
@@ -43,8 +43,8 @@ export default function SceneDetailModal({
           )}
         </div>
 
-        {/* 正文 — 可滚动区域 */}
-        <div className="flex-1 min-h-0 overflow-y-auto p-5 md:p-7 scrollbar-vintage">
+        {/* 正文 — 自然高度，过长时滚动 */}
+        <div className="overflow-y-auto p-5 md:p-7 scrollbar-vintage">
           <div className="mb-5">
             <h2 className="text-lg md:text-xl font-bold text-[#2b2118] leading-snug">
               {scene.placeName} · {scene.name}
