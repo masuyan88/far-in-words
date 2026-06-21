@@ -169,8 +169,8 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
               }}
               aria-label={place.displayName}
             >
-              {/* 选中光圈 — 小巧克制 */}
-              {sel && <span className="pulse-ring absolute w-[22px] h-[22px] rounded-full border-[1.5px] border-[#7a1f00] pointer-events-none" />}
+              {/* 选中光圈 — 克制 */}
+              {sel && <span className="pulse-ring absolute w-[18px] h-[18px] rounded-full border-[1.5px] border-[#7a1f00] pointer-events-none" />}
 
               {/* 点位 */}
               <span
@@ -181,8 +181,8 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
                   background: sel ? "#7a1f00" : "#3d5a1e",
                   border: sel ? "2px solid #7a1f00" : "1.5px solid #5a8030",
                   boxShadow: sel
-                    ? "0 0 8px rgba(122,31,0,0.4), 0 0 2px rgba(122,31,0,0.2)"
-                    : "0 0 3px rgba(61,90,30,0.25)",
+                    ? "0 0 6px rgba(122,31,0,0.35)"
+                    : "0 0 3px rgba(61,90,30,0.2)",
                 }}
               />
 
