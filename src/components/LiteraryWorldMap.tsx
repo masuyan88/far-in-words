@@ -169,17 +169,20 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
               }}
               aria-label={place.displayName}
             >
-              {/* 选中：pulse 从圆圈往外扩 */}
+              {/* 选中三层：pulse 波纹 + 内环 + 中心点 */}
               {sel && (
-                <span className="pulse-ring absolute w-[18px] h-[18px] pointer-events-none" />
+                <>
+                  <span className="pulse-ring absolute w-[18px] h-[18px] pointer-events-none" />
+                  <span className="absolute w-[18px] h-[18px] rounded-full pointer-events-none" style={{ border: "1.5px solid rgba(122,31,0,0.6)" }} />
+                </>
               )}
 
-              {/* 点位 */}
+              {/* 点位 — 始终用 relative 定位作为圆心 */}
               <span
                 className="relative block rounded-full transition-all duration-300"
                 style={{
-                  width: sel ? 10 : 8,
-                  height: sel ? 10 : 8,
+                  width: sel ? 8 : 8,
+                  height: sel ? 8 : 8,
                   background: sel ? "#7a1f00" : "#3d5a1e",
                   border: sel ? "2px solid #7a1f00" : "1.5px solid #5a8030",
                   boxShadow: sel
