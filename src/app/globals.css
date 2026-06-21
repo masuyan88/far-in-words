@@ -53,6 +53,13 @@ html { scroll-behavior: smooth; }
 ::-webkit-scrollbar-thumb { background: #c0a078; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--ink-light); }
 
+/* scrollbar inside modal — thinner, more subtle */
+.scrollbar-vintage::-webkit-scrollbar { width: 3px; }
+.scrollbar-vintage::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-vintage::-webkit-scrollbar-thumb { background: rgba(43,33,24,0.12); border-radius: 2px; }
+.scrollbar-vintage::-webkit-scrollbar-thumb:hover { background: rgba(43,33,24,0.2); }
+.scrollbar-vintage { scrollbar-width: thin; scrollbar-color: rgba(43,33,24,0.12) transparent; }
+
 /* ========== card ========== */
 
 .card {
