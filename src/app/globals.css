@@ -40,7 +40,7 @@ html { scroll-behavior: smooth; }
 .pulse-ring::before {
   content: "";
   position: absolute;
-  inset: -4px;
+  inset: -3px;
   border: 1.5px solid var(--accent);
   border-radius: 50%;
   animation: pulse-ring 2.2s ease-out infinite;

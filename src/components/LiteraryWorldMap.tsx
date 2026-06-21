@@ -164,25 +164,25 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
               style={{
                 left: `${x}%`,
                 top: `${y}%`,
-                transform: `translate(-50%, -50%)${sel ? " scale(1.15)" : ""}`,
+                transform: "translate(-50%, -50%)",
                 WebkitTapHighlightColor: "transparent",
               }}
               aria-label={place.displayName}
             >
-              {/* 选中光圈 — 缩小 */}
-              {sel && <span className="pulse-ring absolute w-6 h-6 rounded-full border-2 border-[#7a1f00] pointer-events-none" />}
+              {/* 选中光圈 — 小巧克制 */}
+              {sel && <span className="pulse-ring absolute w-[22px] h-[22px] rounded-full border-[1.5px] border-[#7a1f00] pointer-events-none" />}
 
               {/* 点位 */}
               <span
                 className="relative block rounded-full transition-all duration-300"
                 style={{
-                  width: sel ? 14 : 10,
-                  height: sel ? 14 : 10,
+                  width: sel ? 12 : 8,
+                  height: sel ? 12 : 8,
                   background: sel ? "#7a1f00" : "#3d5a1e",
-                  border: sel ? "2px solid #7a1f00" : "2px solid #5a8030",
+                  border: sel ? "2px solid #7a1f00" : "1.5px solid #5a8030",
                   boxShadow: sel
-                    ? "0 0 10px rgba(122,31,0,0.5), 0 0 3px rgba(122,31,0,0.3)"
-                    : "0 0 4px rgba(61,90,30,0.3)",
+                    ? "0 0 8px rgba(122,31,0,0.4), 0 0 2px rgba(122,31,0,0.2)"
+                    : "0 0 3px rgba(61,90,30,0.25)",
                 }}
               />
 
