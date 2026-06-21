@@ -5,6 +5,16 @@ import { Place } from "@/data/places";
 // 当前作品《万水千山走遍》的路线顺序（可扩展）
 const ROUTE_ORDER = ["mexico-city", "honduras", "panama", "colombia", "peru", "dunhuang"];
 
+// 标签方向配置 — 避免拉美区域拥挤
+const LABEL_DIR: Record<string, { dir: "top" | "bottom" | "left" | "right"; offset?: { x: number; y: number } }> = {
+  "mexico-city": { dir: "left",  offset: { x: -2, y: 0 } },
+  honduras:      { dir: "right", offset: { x: 2, y: 0 } },
+  panama:        { dir: "right", offset: { x: 2, y: 0 } },
+  colombia:      { dir: "bottom", offset: { x: 0, y: 0 } },
+  peru:          { dir: "bottom", offset: { x: -2, y: 0 } },
+  dunhuang:      { dir: "left",  offset: { x: -2, y: 0 } },
+};
+
 interface LiteraryWorldMapProps {
   places: Place[];
   selectedPlaceId: string;
@@ -126,8 +136,24 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
         {places.map((place) => {
           const sel = place.id === selectedPlaceId;
           const { x, y } = place.mapPosition;
-          // 标签方向：y > 55 的点标签放上方，其余放下方
-          const lblTop = y > 55;
+          const lblCfg = LABEL_DIR[place.id] || { dir: "bottom" as const };
+          const off = lblCfg.offset || { x: 0, y: 0 };
+
+          // 标签位置计算
+          const lblPos: React.CSSProperties = (() => {
+            switch (lblCfg.dir) {
+              case "top":
+                return { bottom: "100%", left: "50%", transform: `translateX(calc(-50% + ${off.x}px))`, marginBottom: 5 };
+              case "bottom":
+                return { top: "100%", left: "50%", transform: `translateX(calc(-50% + ${off.x}px))`, marginTop: 5 };
+              case "left":
+                return { right: "100%", top: "50%", transform: `translateY(calc(-50% + ${off.y}px))`, marginRight: 6 };
+              case "right":
+                return { left: "100%", top: "50%", transform: `translateY(calc(-50% + ${off.y}px))`, marginLeft: 6 };
+              default:
+                return {};
+            }
+          })();
 
           return (
             <button
@@ -143,32 +169,32 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
               }}
               aria-label={place.displayName}
             >
-              {/* 选中光圈 */}
-              {sel && <span className="pulse-ring absolute w-7 h-7 rounded-full border-2 border-[#7a1f00] pointer-events-none" />}
+              {/* 选中光圈 — 缩小 */}
+              {sel && <span className="pulse-ring absolute w-6 h-6 rounded-full border-2 border-[#7a1f00] pointer-events-none" />}
 
               {/* 点位 */}
               <span
                 className="relative block rounded-full transition-all duration-300"
                 style={{
-                  width: sel ? 16 : 10,
-                  height: sel ? 16 : 10,
+                  width: sel ? 14 : 10,
+                  height: sel ? 14 : 10,
                   background: sel ? "#7a1f00" : "#3d5a1e",
-                  border: sel ? "2.5px solid #7a1f00" : "2px solid #5a8030",
+                  border: sel ? "2px solid #7a1f00" : "2px solid #5a8030",
                   boxShadow: sel
-                    ? "0 0 12px rgba(122,31,0,0.5), 0 0 4px rgba(122,31,0,0.3)"
-                    : "0 0 6px rgba(61,90,30,0.3)",
+                    ? "0 0 10px rgba(122,31,0,0.5), 0 0 3px rgba(122,31,0,0.3)"
+                    : "0 0 4px rgba(61,90,30,0.3)",
                 }}
               />
 
-              {/* 标签 */}
+              {/* 标签 — 手机端只显示当前选中地点 */}
               <span
                 className={`absolute whitespace-nowrap font-bold px-2 py-0.5 rounded-md transition-colors duration-300 text-[10px] md:text-[11px] ${
-                  sel ? "text-[#f0e4ce] bg-[#7a1f00]" : "text-[#2b2118] bg-[#f0e4ce]/[0.92] border border-[#b8a070]/50"
+                  sel
+                    ? "text-[#f0e4ce] bg-[#7a1f00]"
+                    : "hidden md:inline-block text-[#2b2118] bg-[#f0e4ce]/[0.92] border border-[#b8a070]/50"
                 }`}
                 style={{
-                  ...(lblTop
-                    ? { bottom: "100%", left: "50%", transform: "translateX(-50%)", marginBottom: 5 }
-                    : { top: "100%", left: "50%", transform: "translateX(-50%)", marginTop: 5 }),
+                  ...lblPos,
                   boxShadow: sel ? "0 2px 6px rgba(122,31,0,0.2)" : "0 1px 3px rgba(0,0,0,0.06)",
                 }}
               >

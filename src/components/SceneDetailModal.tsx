@@ -59,14 +59,14 @@ export default function SceneDetailModal({
           </div>
 
           <div className="mb-4">
-            <h3 className="text-[11px] tracking-wider text-[#6b5a45] uppercase mb-2 font-semibold">这一站像什么</h3>
+            <h3 className="text-[11px] tracking-wider text-[#6b5a45] uppercase mb-2 font-semibold">这一站的回声</h3>
             <p className="text-[#3f3326] text-[15px] md:text-base leading-[1.75] italic">
               &ldquo;{scene.arrivalLine}&rdquo;
             </p>
           </div>
 
           <div className="mb-6">
-            <h3 className="text-[11px] tracking-wider text-[#6b5a45] uppercase mb-2 font-semibold">适合现在的你</h3>
+            <h3 className="text-[11px] tracking-wider text-[#6b5a45] uppercase mb-2 font-semibold">适合谁停一停</h3>
             <p className="text-[#3f3326] text-[15px] md:text-base leading-[1.75]">{scene.suitableFor}</p>
           </div>
 
