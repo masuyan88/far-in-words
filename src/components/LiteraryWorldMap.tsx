@@ -139,18 +139,17 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
           const lblCfg = LABEL_DIR[place.id] || { dir: "bottom" as const };
           const off = lblCfg.offset || { x: 0, y: 0 };
 
-          // 标签位置计算 — 选中时额外偏移避免圆环遮挡
-          const selOff = sel ? 4 : 0;
+          // 标签位置计算
           const lblPos: React.CSSProperties = (() => {
             switch (lblCfg.dir) {
               case "top":
-                return { bottom: "100%", left: "50%", transform: `translateX(calc(-50% + ${off.x}px))`, marginBottom: 5 + selOff };
+                return { bottom: "100%", left: "50%", transform: `translateX(calc(-50% + ${off.x}px))`, marginBottom: 5 };
               case "bottom":
-                return { top: "100%", left: "50%", transform: `translateX(calc(-50% + ${off.x}px))`, marginTop: 5 + selOff };
+                return { top: "100%", left: "50%", transform: `translateX(calc(-50% + ${off.x}px))`, marginTop: 5 };
               case "left":
-                return { right: "100%", top: "50%", transform: `translateY(calc(-50% + ${off.y}px))`, marginRight: 6 + selOff };
+                return { right: "100%", top: "50%", transform: `translateY(calc(-50% + ${off.y}px))`, marginRight: 6 };
               case "right":
-                return { left: "100%", top: "50%", transform: `translateY(calc(-50% + ${off.y}px))`, marginLeft: 6 + selOff };
+                return { left: "100%", top: "50%", transform: `translateY(calc(-50% + ${off.y}px))`, marginLeft: 6 };
               default:
                 return {};
             }
@@ -170,23 +169,20 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
               }}
               aria-label={place.displayName}
             >
-              {/* 选中：中心点 + 小内环 + 外扩散 pulse */}
-              {sel && (
-                <>
-                  <span className="pulse-ring absolute w-[10px] h-[10px] pointer-events-none" />
-                  <span className="absolute w-[17px] h-[17px] rounded-full border-[1.5px] border-[#7a1f00]/40 pointer-events-none" />
-                </>
-              )}
+              {/* 选中光圈 — 克制 */}
+              {sel && <span className="pulse-ring absolute w-[18px] h-[18px] rounded-full border-[1.5px] border-[#7a1f00] pointer-events-none" />}
 
               {/* 点位 */}
               <span
                 className="relative block rounded-full transition-all duration-300"
                 style={{
-                  width: sel ? 10 : 8,
-                  height: sel ? 10 : 8,
+                  width: sel ? 12 : 8,
+                  height: sel ? 12 : 8,
                   background: sel ? "#7a1f00" : "#3d5a1e",
                   border: sel ? "2px solid #7a1f00" : "1.5px solid #5a8030",
-                  boxShadow: sel ? "0 0 6px rgba(122,31,0,0.3)" : "0 0 2px rgba(61,90,30,0.15)",
+                  boxShadow: sel
+                    ? "0 0 6px rgba(122,31,0,0.35)"
+                    : "0 0 3px rgba(61,90,30,0.2)",
                 }}
               />
 
