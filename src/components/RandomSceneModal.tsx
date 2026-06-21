@@ -24,7 +24,7 @@ export default function RandomSceneModal({
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center safe-bottom modal-backdrop" onClick={onClose}>
       <div
-        className="relative w-full max-w-md h-[85svh] sm:h-[85vh] flex flex-col overflow-hidden modal-container"
+        className="relative w-full max-w-md h-[85svh] sm:h-[85vh] flex flex-col modal-container"
         onClick={(e) => e.stopPropagation()}
       >
         {/* 关闭按钮 */}

@@ -18,14 +18,14 @@ export default function SceneDetailModal({
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center safe-bottom modal-backdrop" onClick={onClose}>
       <div
-        className="relative w-full max-w-lg h-[85svh] sm:h-[85vh] flex flex-col overflow-hidden modal-container"
+        className="relative w-full max-w-lg h-[85svh] sm:h-[85vh] flex flex-col modal-container"
         onClick={(e) => e.stopPropagation()}
       >
         {/* 关闭按钮 — 固定在图片右上 */}
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-3 right-3 z-20 w-9 h-9 flex items-center justify-center text-[#6b5a45] hover:text-[#2b2118] transition-colors touch-manipulation rounded-full hover:bg-[#2b2118]/[0.06]"
+          className="absolute top-3 right-3 z-20 w-10 h-10 flex items-center justify-center text-[#6b5a45] hover:text-[#2b2118] transition-colors touch-manipulation rounded-full hover:bg-[#2b2118]/[0.06]"
           aria-label="关闭"
         >
           <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">

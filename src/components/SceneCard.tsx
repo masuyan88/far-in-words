@@ -30,10 +30,13 @@ export default function SceneCard({ scene, onViewDetail }: SceneCardProps) {
         </p>
       </div>
 
-      <div className="px-4 pb-4 pt-1">
+      <div className="px-4 pb-4 pt-1 relative z-10">
         <button
           type="button"
-          onClick={() => onViewDetail(scene)}
+          onClick={() => {
+            console.log("[click scene]", scene.id);
+            onViewDetail(scene);
+          }}
           className="btn-ghost w-full text-[13px] font-medium"
         >
           查看这一站

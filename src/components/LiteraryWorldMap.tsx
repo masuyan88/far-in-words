@@ -159,27 +159,36 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
             <button
               key={place.id}
               type="button"
-              onClick={() => onSelectPlace(place.id)}
-              className="absolute z-10 touch-manipulation transition-transform duration-300"
+              onClick={() => {
+                console.log("[click place]", place.id);
+                onSelectPlace(place.id);
+              }}
+              className="absolute z-20 flex items-center justify-center touch-manipulation"
               style={{
                 left: `${x}%`,
                 top: `${y}%`,
                 transform: "translate(-50%, -50%)",
+                width: 44,
+                height: 44,
                 WebkitTapHighlightColor: "transparent",
+                background: "transparent",
+                border: "none",
+                padding: 0,
+                cursor: "pointer",
               }}
               aria-label={place.displayName}
             >
               {/* 选中三层：pulse 波纹 + 内环 + 中心点 */}
               {sel && (
                 <>
-                  <span className="pulse-ring absolute w-[18px] h-[18px] pointer-events-none" />
-                  <span className="absolute w-[18px] h-[18px] rounded-full pointer-events-none" style={{ border: "1.5px solid rgba(122,31,0,0.6)" }} />
+                  <span className="pulse-ring absolute pointer-events-none" style={{ width: 18, height: 18 }} />
+                  <span className="absolute rounded-full pointer-events-none" style={{ width: 18, height: 18, border: "1.5px solid rgba(122,31,0,0.6)" }} />
                 </>
               )}
 
-              {/* 点位 — 始终用 relative 定位作为圆心 */}
+              {/* 点位 */}
               <span
-                className="relative block rounded-full transition-all duration-300"
+                className="relative block rounded-full"
                 style={{
                   width: sel ? 8 : 8,
                   height: sel ? 8 : 8,

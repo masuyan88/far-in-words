@@ -42,3 +42,7 @@ next-env.d.ts
 
 # raw images (too large for git)
 **/raw/
+
+# images (too large for git push)
+public/images/places/*.webp
+public/images/scenes/*.webp
