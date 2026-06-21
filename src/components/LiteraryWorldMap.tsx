@@ -53,7 +53,7 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
         }} />
 
         {/* SVG 地图层 */}
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
           {/* 经纬线 */}
           <g stroke="#b8a070" strokeWidth="0.06" opacity="0.3">
             {[20, 40, 60, 80].map((v) => <line key={`h${v}`} x1="0" y1={v} x2="100" y2={v} />)}
