@@ -175,8 +175,6 @@ html { scroll-behavior: smooth; }
 
 .modal-backdrop {
   background: rgba(43, 33, 24, 0.55);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
 }
 
 .modal-container {

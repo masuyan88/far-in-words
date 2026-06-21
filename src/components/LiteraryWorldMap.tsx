@@ -41,8 +41,8 @@ export default function LiteraryWorldMap({ places, selectedPlaceId, onSelectPlac
   return (
     <div className="relative w-full max-w-[1200px] mx-auto">
       <div
-        className="relative w-full overflow-hidden rounded-2xl border border-[#2b2118]/12 shadow-sm"
-        style={{ aspectRatio: "16 / 9", background: "#f0e4ce" }}
+        className="relative w-full rounded-2xl border border-[#2b2118]/12 shadow-sm"
+        style={{ aspectRatio: "16 / 9", background: "#f0e4ce", overflow: "visible" }}
       >
         {/* 纸张纹理 */}
         <div className="absolute inset-0 pointer-events-none" style={{
